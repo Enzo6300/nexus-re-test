@@ -9,13 +9,34 @@ Si vous voyez ce message d'erreur après avoir configuré les variables sur Verc
 ### 1. Vérifier les noms des variables (EXACTEMENT comme ci-dessous)
 Les noms doivent être **exactement** :
 - `NEXT_PUBLIC_SUPABASE_URL` (avec underscores, pas de tirets)
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` (avec underscores, pas de tirets)
+- `NEXT_PUBLIC_SUPABASE_KEY` (nom plus court pour éviter les problèmes d'affichage dans Vercel)
+
+⚠️ **Note** : Le code supporte aussi `NEXT_PUBLIC_SUPABASE_ANON_KEY` pour la rétrocompatibilité, mais utilisez `NEXT_PUBLIC_SUPABASE_KEY` qui est plus court.
 
 ❌ **FAUX** : `NEXT_PUBLIC_SUPABASE-URL` ou `NEXT_PUBLIC_SUPABASE_URL ` (avec espace)
 
 ### 2. Vérifier les valeurs
-- `NEXT_PUBLIC_SUPABASE_URL` doit commencer par `https://` (ex: `https://xxxxx.supabase.co`)
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` doit être une longue chaîne de caractères (clé anonyme)
+
+#### Pour `NEXT_PUBLIC_SUPABASE_URL` :
+- Doit commencer par `https://` (ex: `https://xxxxx.supabase.co`)
+- Pas d'espaces avant ou après
+
+#### Pour `NEXT_PUBLIC_SUPABASE_KEY` :
+⚠️ **IMPORTANT** : La clé anonyme est **très longue** (environ 200+ caractères), c'est normal !
+
+**Comment copier correctement depuis Supabase :**
+1. Allez sur [supabase.com](https://supabase.com) → Votre projet
+2. **Project Settings** → **API**
+3. Dans la section **"Project API keys"**, trouvez **"anon public"**
+4. Cliquez sur l'**icône de copie** à côté de la clé (ou sélectionnez tout le texte)
+5. La clé commence généralement par `eyJ...` et est très longue
+6. **Copiez TOUTE la clé** (elle peut sembler tronquée dans l'interface, mais copiez-la entièrement)
+
+**Dans Vercel :**
+- Collez la clé dans le champ "Value"
+- Le champ peut sembler petit, mais **collez quand même toute la clé**
+- Vercel accepte les longues chaînes, même si l'affichage est tronqué
+- Vérifiez qu'il n'y a **pas d'espaces** au début ou à la fin après le collage
 
 ### 3. Vérifier les environnements sélectionnés
 Dans Vercel, pour chaque variable, vous devez cocher :
@@ -57,16 +78,36 @@ Dans Vercel :
    - Ajoutez `NEXT_PUBLIC_SUPABASE_URL` avec votre URL Supabase
    - Cochez Production, Preview, Development
    - Cliquez **Save**
-   - Répétez pour `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - Répétez pour `NEXT_PUBLIC_SUPABASE_KEY`
 
 3. **Déployer** :
    - Si vous avez ajouté les variables après le premier déploiement, **redéployez** (voir étape 4 ci-dessus)
 
 ## 🆘 Si ça ne fonctionne toujours pas
 
-1. Vérifiez que vous avez bien copié les valeurs depuis Supabase (Project Settings → API)
-2. Vérifiez qu'il n'y a pas d'espaces avant/après les valeurs dans Vercel
-3. Supprimez et recréez les variables dans Vercel
-4. Redéployez après chaque modification
-5. Attendez 1-2 minutes après le redéploiement pour que les changements prennent effet
+### Problème : La clé est trop longue / ne rentre pas
+
+**Solution :**
+1. **Copiez la clé depuis Supabase** :
+   - Allez dans Supabase → Project Settings → API
+   - Trouvez **"anon public"** (pas "service_role" qui est secrète !)
+   - Cliquez sur l'icône de copie ou sélectionnez tout le texte avec Ctrl+A puis Ctrl+C
+   
+2. **Dans Vercel** :
+   - Cliquez dans le champ "Value"
+   - Collez avec Ctrl+V (ou clic droit → Coller)
+   - **Même si le champ semble petit, la clé entière sera enregistrée**
+   - Vercel peut tronquer l'affichage, mais la valeur complète est sauvegardée
+
+3. **Vérifications** :
+   - Assurez-vous d'avoir copié la **"anon public"** et non la **"service_role"**
+   - Vérifiez qu'il n'y a pas d'espaces avant/après la clé
+   - Vérifiez qu'il n'y a pas de retours à la ligne dans la clé
+   - La clé doit commencer par `eyJ` (c'est un JWT)
+
+4. **Si le problème persiste** :
+   - Supprimez la variable dans Vercel
+   - Recréez-la en copiant à nouveau depuis Supabase
+   - Redéployez après chaque modification
+   - Attendez 1-2 minutes après le redéploiement
 

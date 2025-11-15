@@ -5,7 +5,8 @@ export function createBrowserClient(): SupabaseClient | null {
   
   // Récupération des variables d'environnement
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  // Utilisation d'un nom plus court pour éviter les problèmes d'affichage dans Vercel
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   
   // Vérification et logs en développement pour diagnostiquer
   if (process.env.NODE_ENV === "development") {
@@ -13,7 +14,7 @@ export function createBrowserClient(): SupabaseClient | null {
       console.error("❌ NEXT_PUBLIC_SUPABASE_URL est manquant");
     }
     if (!supabaseAnonKey) {
-      console.error("❌ NEXT_PUBLIC_SUPABASE_ANON_KEY est manquant");
+      console.error("❌ NEXT_PUBLIC_SUPABASE_KEY (ou NEXT_PUBLIC_SUPABASE_ANON_KEY) est manquant");
     }
     if (supabaseUrl && supabaseAnonKey) {
       console.log("✅ Variables Supabase configurées correctement");

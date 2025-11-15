@@ -23,7 +23,7 @@ cp .env.example .env.local
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=votre_url_supabase
-NEXT_PUBLIC_SUPABASE_ANON_KEY=votre_cle_anonyme_supabase
+NEXT_PUBLIC_SUPABASE_KEY=votre_cle_anonyme_supabase
 RESEND_API_KEY=votre_cle_resend (optionnel)
 ```
 
@@ -60,7 +60,7 @@ Ouvrir http://localhost:3000
    - Aller dans **Project Settings → Environment Variables**
    - Ajouter les variables suivantes :
      - `NEXT_PUBLIC_SUPABASE_URL` = votre URL Supabase (ex: `https://xxxxx.supabase.co`)
-     - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = votre clé anonyme Supabase
+     - `NEXT_PUBLIC_SUPABASE_KEY` = votre clé anonyme Supabase (nom plus court pour Vercel)
      - `RESEND_API_KEY` = votre clé Resend (optionnel, pour le formulaire de contact)
    - Sélectionner les environnements : **Production**, **Preview**, et **Development**
    - Cliquer sur **Save**
