@@ -8,20 +8,18 @@ Si vous voyez ce message d'erreur après avoir configuré les variables sur Verc
 
 ### 1. Vérifier les noms des variables (EXACTEMENT comme ci-dessous)
 Les noms doivent être **exactement** :
-- `NEXT_PUBLIC_SUPABASE_URL` 
-- `NEXT_PUBLIC_SUPABASE_KEY`
+- `NEXT_PUBLIC_URL` 
+- `NEXT_PUBLIC_KEY`
 
-⚠️ **Important** : Dans Next.js, les variables accessibles côté client doivent commencer par `NEXT_PUBLIC_`. Ces noms sont les plus courts possibles tout en respectant cette contrainte.
-
-❌ **FAUX** : `SUPABASE_URL` ou `SUPABASE_KEY` (sans le préfixe NEXT_PUBLIC_)
+⚠️ **Important** : Dans Next.js, les variables accessibles côté client doivent commencer par `NEXT_PUBLIC_`.
 
 ### 2. Vérifier les valeurs
 
-#### Pour `NEXT_PUBLIC_SUPABASE_URL` :
+#### Pour `NEXT_PUBLIC_URL` :
 - Doit commencer par `https://` (ex: `https://xxxxx.supabase.co`)
 - Pas d'espaces avant ou après
 
-#### Pour `NEXT_PUBLIC_SUPABASE_KEY` :
+#### Pour `NEXT_PUBLIC_KEY` :
 ⚠️ **IMPORTANT** : La clé anonyme est **très longue** (environ 200+ caractères), c'est normal !
 
 **Comment copier correctement depuis Supabase :**
@@ -63,7 +61,7 @@ Dans Vercel :
 
 1. Ouvrez la console du navigateur (F12) sur votre site déployé
 2. Regardez les messages dans la console
-3. Si vous voyez `❌ SUPABASE_URL est manquant`, les variables ne sont pas chargées
+3. Si vous voyez `❌ NEXT_PUBLIC_URL est manquant`, les variables ne sont pas chargées
 
 ## 📝 Étapes complètes sur Vercel
 
@@ -75,10 +73,10 @@ Dans Vercel :
 2. **Ajouter les variables** (AVANT le premier déploiement si possible) :
    - Dans **Settings** → **Environment Variables**
    - Cliquez sur **"Add New"**
-   - Ajoutez `NEXT_PUBLIC_SUPABASE_URL` avec votre URL Supabase
+   - Ajoutez `NEXT_PUBLIC_URL` avec votre URL Supabase
    - Cochez Production, Preview, Development
    - Cliquez **Save**
-   - Répétez pour `NEXT_PUBLIC_SUPABASE_KEY`
+   - Répétez pour `NEXT_PUBLIC_KEY`
 
 3. **Déployer** :
    - Si vous avez ajouté les variables après le premier déploiement, **redéployez** (voir étape 4 ci-dessus)

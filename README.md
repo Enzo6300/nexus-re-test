@@ -22,8 +22,8 @@ cp .env.example .env.local
 2. **Remplir les variables d'environnement** dans `.env.local` :
 
 ```
-NEXT_PUBLIC_SUPABASE_URL=votre_url_supabase
-NEXT_PUBLIC_SUPABASE_KEY=votre_cle_anonyme_supabase
+NEXT_PUBLIC_URL=votre_url_supabase
+NEXT_PUBLIC_KEY=votre_cle_anonyme_supabase
 RESEND_API_KEY=votre_cle_resend
 ```
 
@@ -59,8 +59,8 @@ Ouvrir http://localhost:3000
 2. **Configurer les variables d'environnement** (OBLIGATOIRE) :
    - Aller dans **Project Settings → Environment Variables**
    - Ajouter les variables suivantes :
-     - `NEXT_PUBLIC_SUPABASE_URL` = votre URL Supabase
-     - `NEXT_PUBLIC_SUPABASE_KEY` = votre clé anonyme Supabase
+     - `NEXT_PUBLIC_URL` = votre URL Supabase
+     - `NEXT_PUBLIC_KEY` = votre clé anonyme Supabase
      - `RESEND_API_KEY` = votre clé Resend (optionnel)
    - Sélectionner les environnements : **Production**, **Preview**, et **Development**
    - Cliquer sur **Save**
