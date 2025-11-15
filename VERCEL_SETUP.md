@@ -8,12 +8,12 @@ Si vous voyez ce message d'erreur après avoir configuré les variables sur Verc
 
 ### 1. Vérifier les noms des variables (EXACTEMENT comme ci-dessous)
 Les noms doivent être **exactement** :
-- `NEXT_PUBLIC_SUPABASE_URL` (avec underscores, pas de tirets)
-- `NEXT_PUBLIC_SUPABASE_KEY` (nom plus court pour éviter les problèmes d'affichage dans Vercel)
+- `NEXT_PUBLIC_SUPABASE_URL` 
+- `NEXT_PUBLIC_SUPABASE_KEY`
 
-⚠️ **Note** : Le code supporte aussi `NEXT_PUBLIC_SUPABASE_ANON_KEY` pour la rétrocompatibilité, mais utilisez `NEXT_PUBLIC_SUPABASE_KEY` qui est plus court.
+⚠️ **Important** : Dans Next.js, les variables accessibles côté client doivent commencer par `NEXT_PUBLIC_`. Ces noms sont les plus courts possibles tout en respectant cette contrainte.
 
-❌ **FAUX** : `NEXT_PUBLIC_SUPABASE-URL` ou `NEXT_PUBLIC_SUPABASE_URL ` (avec espace)
+❌ **FAUX** : `SUPABASE_URL` ou `SUPABASE_KEY` (sans le préfixe NEXT_PUBLIC_)
 
 ### 2. Vérifier les valeurs
 
@@ -63,7 +63,7 @@ Dans Vercel :
 
 1. Ouvrez la console du navigateur (F12) sur votre site déployé
 2. Regardez les messages dans la console
-3. Si vous voyez `❌ NEXT_PUBLIC_SUPABASE_URL est manquant`, les variables ne sont pas chargées
+3. Si vous voyez `❌ SUPABASE_URL est manquant`, les variables ne sont pas chargées
 
 ## 📝 Étapes complètes sur Vercel
 
