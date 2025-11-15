@@ -10,15 +10,26 @@ NexusAI Labs — Site vitrine type startup tech (IA & cybersécurité) construit
 
 ## Configuration
 
-Créer un fichier `.env.local` à la racine avec :
+### En local (développement)
+
+1. **Créer un fichier `.env.local`** à la racine du projet (copier depuis `.env.example` si disponible) :
+
+```bash
+# Copier le fichier d'exemple
+cp .env.example .env.local
+```
+
+2. **Remplir les variables d'environnement** dans `.env.local` :
 
 ```
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-RESEND_API_KEY=
+NEXT_PUBLIC_SUPABASE_URL=votre_url_supabase
+NEXT_PUBLIC_SUPABASE_ANON_KEY=votre_cle_anonyme_supabase
+RESEND_API_KEY=votre_cle_resend (optionnel)
 ```
 
-Pour Supabase, créer un projet puis récupérer l’URL et la clé anonyme dans Project Settings → API. L’auth email/password doit être activée.
+**Pour Supabase** : Créer un projet sur [supabase.com](https://supabase.com), puis récupérer l'URL et la clé anonyme dans **Project Settings → API**. L'auth email/password doit être activée dans **Authentication → Providers**.
+
+**⚠️ Important** : Le fichier `.env.local` est automatiquement ignoré par Git et ne sera **jamais** commité sur GitHub. Vos clés restent sécurisées.
 
 ## Démarrage
 
@@ -33,7 +44,11 @@ Ouvrir http://localhost:3000
 
 ## Déploiement
 
-### Sur Vercel
+### ⚠️ Configuration des variables d'environnement en production
+
+**IMPORTANT** : Pour que votre site fonctionne en production, vous **DEVEZ** configurer les variables d'environnement sur votre plateforme de déploiement. Les fichiers `.env.local` ne sont **pas** déployés automatiquement.
+
+### Sur Vercel (recommandé)
 
 1. **Connecter le repository GitHub** :
    - Aller sur [vercel.com](https://vercel.com)
@@ -41,15 +56,32 @@ Ouvrir http://localhost:3000
    - Importer votre repository GitHub
    - Vercel détectera automatiquement Next.js
 
-2. **Configurer les variables d'environnement** :
-   Dans Project Settings → Environment Variables, ajouter :
-   - `NEXT_PUBLIC_SUPABASE_URL` = votre URL Supabase
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = votre clé anonyme Supabase
-   - `RESEND_API_KEY` (optionnel, pour emails du formulaire de contact)
+2. **Configurer les variables d'environnement** (OBLIGATOIRE) :
+   - Aller dans **Project Settings → Environment Variables**
+   - Ajouter les variables suivantes :
+     - `NEXT_PUBLIC_SUPABASE_URL` = votre URL Supabase (ex: `https://xxxxx.supabase.co`)
+     - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = votre clé anonyme Supabase
+     - `RESEND_API_KEY` = votre clé Resend (optionnel, pour le formulaire de contact)
+   - Sélectionner les environnements : **Production**, **Preview**, et **Development**
+   - Cliquer sur **Save**
 
 3. **Déployer** :
    - Cliquer sur "Deploy"
    - Vercel déploiera automatiquement à chaque push sur la branche principale
+   - **Redéployer** après avoir ajouté les variables d'environnement si nécessaire
+
+### Sur Netlify
+
+1. **Connecter le repository GitHub** sur [netlify.com](https://netlify.com)
+
+2. **Configurer les variables d'environnement** :
+   - Aller dans **Site Settings → Environment Variables**
+   - Ajouter les mêmes variables que pour Vercel
+   - Redéployer le site
+
+### Sur d'autres plateformes
+
+Configurez les variables d'environnement dans les paramètres de votre plateforme de déploiement. Les variables `NEXT_PUBLIC_*` sont accessibles côté client, les autres sont uniquement côté serveur.
 
 ### Sur GitHub
 
@@ -69,7 +101,6 @@ git branch -M main
 git push -u origin main
 ```
 
-**⚠️ Important** : Le fichier `.env.local` est automatiquement ignoré par `.gitignore` et ne sera **jamais** commité sur GitHub. Vos clés restent sécurisées.
 
 ## Pages
 
