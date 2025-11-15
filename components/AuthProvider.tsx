@@ -35,6 +35,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     clientRef.current = createBrowserClient();
     if (!clientRef.current) {
+      console.error("⚠️ Supabase client non initialisé. Vérifiez les variables d'environnement.");
       setLoading(false);
       return;
     }
